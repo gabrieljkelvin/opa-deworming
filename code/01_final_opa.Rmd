@@ -35,10 +35,10 @@ knit:
   # render to index.html for GitHub pages
   # render to 01_final_opa.html to knit locally
   # YAML does not support commenting inside the function
-  #(function(input_file, encoding) {
-  #rmarkdown::render(input_file, encoding=encoding, output_file=file.path("..", 'index.html'));
-  #rmarkdown::render(input_file, encoding=encoding, output_file='01_final_opa.html');
-  #})
+  (function(input_file, encoding) {
+  rmarkdown::render(input_file, encoding=encoding, output_file=file.path("..", 'index.html'));
+  rmarkdown::render(input_file, encoding=encoding, output_file='01_final_opa.html');
+  })
   
 ---
 \def\blue{\color{blue}}
@@ -3081,10 +3081,12 @@ all_res_10000_sims <- c(
 )
 
 
+print(nsims_so)
 if (TRUE) {
     k <- 0
     for ( i in policy_estimates_varnames ) {
         k <- k + 1
+        print(k)
         to_test <- npv_all_sim[[i]]
         if (nsims_so == 1e4){
             unit_test_f(to_test, all_res_10000_sims[k], main_run_var = TRUE)
@@ -3096,6 +3098,10 @@ if (TRUE) {
     }
 }
 
+unit_test_f(npv_all_sim[[6]], 
+            all_res_10000_sims[6], 
+            main_run_var = TRUE)
+print(npv_all_sim[[6]])
 
 ################
 ###### Results/Viz
